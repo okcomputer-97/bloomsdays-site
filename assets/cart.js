@@ -1,3 +1,6 @@
+// Marks JS as available so scroll fade-in can hide content until it is revealed.
+document.documentElement.classList.add("js");
+
 // Catalog and cart. The cart lives in the visitor's browser only; no payment is taken on this site.
 var BALM_INGREDIENTS = "Aloe Vera Gel (containing enzymes, mono and poly-saccharides, tannins, amino acids, saponins, salicylic acid, arachidonic acid, lipids, vitamins and minerals), Carbowax, PG, Herbal Essences";
 
@@ -108,4 +111,21 @@ function initTabs() {
   show(0);
 }
 
-document.addEventListener("DOMContentLoaded", function () { showCount(); initTabs(); });
+// Subtle fade-in on scroll. Without JS (or with reduced motion) everything is shown as is.
+function initFade() {
+  var els = document.querySelectorAll(".fade");
+  if (!els.length) return;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) {
+    els.forEach(function (el) { el.classList.add("in"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -40px 0px", threshold: 0.05 });
+  els.forEach(function (el) { io.observe(el); });
+}
+
+document.addEventListener("DOMContentLoaded", function () { showCount(); initTabs(); initFade(); });
