@@ -5,25 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bloomsdays | Shop</title>
 <meta name="description" content="Bloomsdays, a brand of Electric Juice Inc. Shop EJmix Aromatherapy Blend and intimate deodorant balms.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="assets/site.css">
 <script src="assets/cart.js"></script>
 </head>
 <body>
 <header class="site"><div class="wrap">
-  <a class="logo" href="index.html"><img src="assets/bloomsdays-logo.jpg" alt="Bloomsdays, est. 2015"></a>
+  <a class="logo" href="index.html"><img src="assets/bloomsdays-logo-cream.png" width="250" height="58" alt="Bloomsdays, est. 2015"></a>
   <nav class="main">
-    <a href="index.html">Shop</a>
-    <a href="ejmix.html">EJmix</a>
+    <a href="index.html">Home</a>
+    <a href="ejmix.html">Shop</a>
     <a href="about.html">About</a>
     <a class="cart-link" href="cart.html">Cart<span id="cart-count">0</span></a>
   </nav>
 </div></header>
+<section class="hero"><div class="inner">
+  <h1>BLOOMSDAYS</h1>
+  <p>Botanicals &amp; Bliss</p>
+  <a class="btn light" href="ejmix.html">SHOP EJMIX</a>
+</div></section>
 <main><div class="wrap">
 
-<div class="intro">
-  <h1>Bloomsdays</h1>
-  <p class="brand-line">Bloomsdays is a brand of Electric Juice Inc, Mineola, New York.</p>
+<p class="intro-line">Bloomsdays is a brand of Electric Juice Inc, Mineola, New York.</p>
+<hr class="rule">
+<div class="photo-grid">
+  <img src="assets/old/grid-sunflare.jpg" alt="" loading="lazy">
+  <img src="assets/old/grid-pampas.jpg" alt="" loading="lazy">
+  <div class="big"><img src="assets/old/lifestyle-tea-hands.jpg" alt="" loading="lazy"></div>
 </div>
+<hr class="rule">
 
 <section class="featured product">
   <a class="photo" href="ejmix.html"><img src="assets/ejmix-50ml.jpg" alt="EJmix Aromatherapy Blend & Diluent, 50ml bottle"></a>
@@ -49,7 +61,6 @@ document.getElementById("balms").innerHTML = CATALOG.filter(function (p) { retur
 </div></main>
 <footer class="site"><div class="wrap">
   <p><b>Bloomsdays is a brand of Electric Juice Inc.</b></p>
-  <p>Electric Juice Inc, 130 Roosevelt Ave, Mineola, NY 11501</p>
   <p>Contact: business@bloomsdays.com</p>
   <p>&copy; 2026 Electric Juice Inc. All rights reserved.</p>
 </div></footer>

@@ -88,4 +88,24 @@ function wireBuy(id) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", showCount);
+// Product tabs. Without JS both panels stay visible.
+function initTabs() {
+  var box = document.querySelector(".tabs");
+  if (!box) return;
+  var links = box.querySelectorAll(".tab-nav a"), panels = box.querySelectorAll(".tab-panel");
+  function show(i) {
+    for (var k = 0; k < panels.length; k++) {
+      var on = k === i;
+      panels[k].classList.toggle("selected", on);
+      links[k].classList.toggle("selected", on);
+      links[k].setAttribute("aria-selected", on ? "true" : "false");
+    }
+  }
+  links.forEach(function (a, i) {
+    a.addEventListener("click", function (e) { e.preventDefault(); show(i); });
+  });
+  box.classList.add("js");
+  show(0);
+}
+
+document.addEventListener("DOMContentLoaded", function () { showCount(); initTabs(); });
