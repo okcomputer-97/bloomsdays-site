@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloomsdays | Shop</title>
+<meta name="description" content="Bloomsdays, a brand of Electric Juice Inc. Shop EJmix Aromatherapy Blend and intimate deodorant balms.">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/cart.js"></script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="index.html"><img src="assets/bloomsdays-logo.jpg" alt="Bloomsdays, est. 2015"></a>
+  <nav class="main">
+    <a href="index.html">Shop</a>
+    <a href="ejmix.html">EJmix</a>
+    <a href="about.html">About</a>
+    <a class="cart-link" href="cart.html">Cart<span id="cart-count">0</span></a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+
+<div class="intro">
+  <h1>Bloomsdays</h1>
+  <p class="brand-line">Bloomsdays is a brand of Electric Juice Inc, Mineola, New York.</p>
+</div>
+
+<section class="featured product">
+  <a class="photo" href="ejmix.html"><img src="assets/ejmix-50ml.jpg" alt="EJmix Aromatherapy Blend & Diluent, 50ml bottle"></a>
+  <div>
+    <p class="brand-line">Bloomsdays</p>
+    <h2 style="margin-top:0"><a href="ejmix.html" style="color:inherit;text-decoration:none">EJmix Aromatherapy Blend &amp; Diluent (50ml)</a></h2>
+    <p>An odorless glycol base for diluting essential oils for reed diffusers and oil diffusers.</p>
+    <p class="price">$29.98</p>
+    <a class="btn" href="ejmix.html">View product</a>
+  </div>
+</section>
+
+<h2>Intimate deodorant balms</h2>
+<div class="grid" id="balms"></div>
+<script>
+document.getElementById("balms").innerHTML = CATALOG.filter(function (p) { return p.id !== "ejmix-50ml"; }).map(function (p) {
+  return '<a class="tile" href="' + productUrl(p) + '"><img src="' + p.image + '" alt="' + esc(p.name) + '">' +
+    '<span class="b">' + esc(p.brand) + '</span><span class="n">' + esc(p.name) + '</span>' +
+    '<span class="p">' + money(p.price) + '</span></a>';
+}).join("");
+</script>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p><b>Bloomsdays is a brand of Electric Juice Inc.</b></p>
+  <p>Electric Juice Inc, 130 Roosevelt Ave, Mineola, NY 11501</p>
+  <p>Contact: business@bloomsdays.com</p>
+  <p>&copy; 2026 Electric Juice Inc. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloomsdays | Product</title>
+<meta name="description" content="Intimate deodorant balm sold by Bloomsdays, a brand of Electric Juice Inc.">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/cart.js"></script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="index.html"><img src="assets/bloomsdays-logo.jpg" alt="Bloomsdays, est. 2015"></a>
+  <nav class="main">
+    <a href="index.html">Shop</a>
+    <a href="ejmix.html">EJmix</a>
+    <a href="about.html">About</a>
+    <a class="cart-link" href="cart.html">Cart<span id="cart-count">0</span></a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+
+<div id="prod"></div>
+<script>
+(function () {
+  var id = new URLSearchParams(location.search).get("p");
+  var p = findProduct(id);
+  var box = document.getElementById("prod");
+  if (!p || p.id === "ejmix-50ml") {
+    if (p) { location.replace("ejmix.html"); return; }
+    box.innerHTML = '<p>Product not found. <a href="index.html">Back to the shop</a></p>';
+    return;
+  }
+  document.title = p.name + " | Bloomsdays";
+  box.innerHTML =
+    '<section class="product"><div class="photo"><img src="' + p.image + '" alt="' + esc(p.name) + '"></div><div>' +
+    '<p class="brand-line">Brand: ' + esc(p.brand) + '</p><h1>' + esc(p.name) + '</h1>' +
+    '<p class="price">' + money(p.price) + '</p>' +
+    '<div class="buy"><label for="qty">Qty</label><input id="qty" type="number" min="1" max="99" value="1">' +
+    '<button class="btn" id="add" type="button">Add to Cart</button></div><p class="added" id="added"></p>' +
+    '<p>' + esc(p.summary) + '</p><ul class="bullets">' + p.points.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join("") + '</ul>' +
+    '</div></section><h2>Product details</h2><table class="specs">' +
+    '<tr><th>Brand</th><td>' + esc(p.brand) + '</td></tr>' +
+    '<tr><th>Product type</th><td>Intimate deodorant balm</td></tr>' +
+    '<tr><th>Size</th><td>' + esc(p.size) + '</td></tr>' +
+    '<tr><th>Ingredients</th><td>' + esc(p.ingredients) + '</td></tr></table>';
+  wireBuy(p.id);
+})();
+</script>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p><b>Bloomsdays is a brand of Electric Juice Inc.</b></p>
+  <p>Electric Juice Inc, 130 Roosevelt Ave, Mineola, NY 11501</p>
+  <p>Contact: business@bloomsdays.com</p>
+  <p>&copy; 2026 Electric Juice Inc. All rights reserved.</p>
+</div></footer>
+</body>
+</html>

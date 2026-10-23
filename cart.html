@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cart | Bloomsdays</title>
+<meta name="description" content="Your Bloomsdays cart.">
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/cart.js"></script>
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="logo" href="index.html"><img src="assets/bloomsdays-logo.jpg" alt="Bloomsdays, est. 2015"></a>
+  <nav class="main">
+    <a href="index.html">Shop</a>
+    <a href="ejmix.html">EJmix</a>
+    <a href="about.html">About</a>
+    <a class="cart-link" href="cart.html">Cart<span id="cart-count">0</span></a>
+  </nav>
+</div></header>
+<main><div class="wrap">
+
+<h1>Your cart</h1>
+<div class="panel" id="cart"></div>
+<script>
+function renderCart() {
+  var c = readCart(), rows = "", total = 0;
+  CATALOG.forEach(function (p) {
+    var q = c[p.id]; if (!q) return;
+    total += q * p.price;
+    rows += '<div class="cart-row"><img src="' + p.image + '" alt="">' +
+      '<div><a href="' + productUrl(p) + '">' + esc(p.name) + '</a><br>' + money(p.price) + ' each<br>' +
+      '<label>Qty <input type="number" min="0" max="99" value="' + q + '" data-id="' + p.id + '" style="width:60px;padding:5px"></label> ' +
+      '<button class="link-btn" data-remove="' + p.id + '" type="button">Remove</button></div>' +
+      '<div>' + money(q * p.price) + '</div></div>';
+  });
+  var box = document.getElementById("cart");
+  if (!rows) { box.innerHTML = '<p>Your cart is empty.</p><div class="actions"><a class="btn" href="index.html">Continue shopping</a></div>'; return; }
+  box.innerHTML = rows + '<div class="cart-total"><span>Subtotal</span><span>' + money(total) + '</span></div>' +
+    '<p style="color:var(--muted);font-size:14px">Shipping and tax are calculated at checkout.</p>' +
+    '<div class="actions"><a class="btn" href="checkout.html">Checkout</a><a class="btn secondary" href="index.html">Continue shopping</a></div>';
+  box.querySelectorAll("input[data-id]").forEach(function (i) {
+    i.addEventListener("change", function () { setQty(i.dataset.id, parseInt(i.value, 10) || 0); renderCart(); });
+  });
+  box.querySelectorAll("[data-remove]").forEach(function (b) {
+    b.addEventListener("click", function () { setQty(b.dataset.remove, 0); renderCart(); });
+  });
+}
+renderCart();
+</script>
+
+</div></main>
+<footer class="site"><div class="wrap">
+  <p><b>Bloomsdays is a brand of Electric Juice Inc.</b></p>
+  <p>Electric Juice Inc, 130 Roosevelt Ave, Mineola, NY 11501</p>
+  <p>Contact: business@bloomsdays.com</p>
+  <p>&copy; 2026 Electric Juice Inc. All rights reserved.</p>
+</div></footer>
+</body>
+</html>
